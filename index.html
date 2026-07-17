@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helios Converters — Grav Open Education Tools</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><style>path{stroke:%232c2a27}@media (prefers-color-scheme:dark){path{stroke:%23e8e6e3}}</style><path d='M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4'/><path d='M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4'/></svg>">
+<style>
+  /* ── Tokens ── */
+  :root {
+    --bg:             #f6f5f3;
+    --surface:        #ffffff;
+    --text:           #1c1917;
+    --text-subtle:    #6b6560;
+    --text-muted:     #a09890;
+    --accent:         #2f8f7a;
+    --accent-hover:   #257566;
+    --accent-text:    #ffffff;
+    --border:         #e3e0dc;
+    --badge-bg:       #d7f0ea;
+    --badge-text:     #1f6b5a;
+    --stripe-hub:     #2f8f7a;
+    --stripe-reader:  #3b5a75;
+    --hub-badge-bg:   #d7f0ea;
+    --hub-badge-text: #1f6b5a;
+    --rdr-badge-bg:   #dde6ec;
+    --rdr-badge-text: #2c4457;
+    --icon-hub-bg:    #d7f0ea;
+    --icon-rdr-bg:    #dde6ec;
+    --icon-header-bg: #ece9e5;
+    --focus:          #2f8f7a;
+    --radius:         12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:             #1a1917;
+      --surface:        #242220;
+      --text:           #f0eeec;
+      --text-subtle:    #8c8480;
+      --text-muted:     #6b6560;
+      --accent:         #4fb89f;
+      --accent-hover:   #6dd4bd;
+      --accent-text:    #0f1f1a;
+      --border:         #332f2c;
+      --badge-bg:       #163d33;
+      --badge-text:     #6dd4bd;
+      --stripe-hub:     #4fb89f;
+      --stripe-reader:  #4a6f8c;
+      --hub-badge-bg:   #163d33;
+      --hub-badge-text: #6dd4bd;
+      --rdr-badge-bg:   #202f3d;
+      --rdr-badge-text: #9fbad0;
+      --icon-hub-bg:    #163d33;
+      --icon-rdr-bg:    #202f3d;
+      --icon-header-bg: #2c2a27;
+      --focus:          #4fb89f;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:             #f6f5f3;
+    --surface:        #ffffff;
+    --text:           #1c1917;
+    --text-subtle:    #6b6560;
+    --text-muted:     #a09890;
+    --accent:         #2f8f7a;
+    --accent-hover:   #257566;
+    --accent-text:    #ffffff;
+    --border:         #e3e0dc;
+    --badge-bg:       #d7f0ea;
+    --badge-text:     #1f6b5a;
+    --stripe-hub:     #2f8f7a;
+    --stripe-reader:  #3b5a75;
+    --hub-badge-bg:   #d7f0ea;
+    --hub-badge-text: #1f6b5a;
+    --rdr-badge-bg:   #dde6ec;
+    --rdr-badge-text: #2c4457;
+    --icon-hub-bg:    #d7f0ea;
+    --icon-rdr-bg:    #dde6ec;
+    --icon-header-bg: #ece9e5;
+    --focus:          #2f8f7a;
+  }
+  :root[data-theme="dark"] {
+    --bg:             #1a1917;
+    --surface:        #242220;
+    --text:           #f0eeec;
+    --text-subtle:    #8c8480;
+    --text-muted:     #6b6560;
+    --accent:         #4fb89f;
+    --accent-hover:   #6dd4bd;
+    --accent-text:    #0f1f1a;
+    --border:         #332f2c;
+    --badge-bg:       #163d33;
+    --badge-text:     #6dd4bd;
+    --stripe-hub:     #4fb89f;
+    --stripe-reader:  #4a6f8c;
+    --hub-badge-bg:   #163d33;
+    --hub-badge-text: #6dd4bd;
+    --rdr-badge-bg:   #202f3d;
+    --rdr-badge-text: #9fbad0;
+    --icon-hub-bg:    #163d33;
+    --icon-rdr-bg:    #202f3d;
+    --icon-header-bg: #2c2a27;
+    --focus:          #4fb89f;
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1rem 3rem;
+    line-height: 1.5;
+  }
+
+  .page { width: 100%; max-width: 600px; }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .header-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--icon-header-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .header-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 99px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    vertical-align: middle;
+    margin-left: 0.375rem;
+    letter-spacing: 0.02em;
+  }
+  .header-sub {
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+    margin-top: 0.1rem;
+  }
+
+  /* ── Intro ── */
+  .intro {
+    font-size: 0.9375rem;
+    color: var(--text-subtle);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+  .intro strong { color: var(--text); }
+  .intro a { color: var(--text-subtle); text-decoration: underline; text-underline-offset: 2px; }
+  .intro a:hover { color: var(--text); }
+
+  /* ── Cards ── */
+  .cards { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.75rem; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+  }
+  .card-stripe {
+    width: 4px;
+    flex-shrink: 0;
+  }
+  .card-stripe--hub    { background: var(--stripe-hub); }
+  .card-stripe--reader { background: var(--stripe-reader); }
+
+  .card-body {
+    padding: 1.25rem 1.25rem 1.25rem 1.125rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+  .card-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .card-icon--hub    { background: var(--icon-hub-bg); }
+  .card-icon--reader { background: var(--icon-rdr-bg); }
+
+  .card-title-group { flex: 1; }
+  .card-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .card-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 99px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+    letter-spacing: 0.02em;
+  }
+  .card-badge--hub    { background: var(--hub-badge-bg); color: var(--hub-badge-text); }
+  .card-badge--reader { background: var(--rdr-badge-bg); color: var(--rdr-badge-text); }
+
+  .card-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+  .card-subtitle a { color: var(--text-subtle); text-decoration: underline; text-underline-offset: 2px; }
+  .card-subtitle a:hover { color: var(--text); }
+
+  .card-desc {
+    font-size: 0.9375rem;
+    color: var(--text-subtle);
+    line-height: 1.65;
+  }
+
+  .card-action {
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.375rem 1rem;
+  }
+  .example-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .example-link--hub    { color: var(--accent); }
+  .example-link--reader { color: var(--stripe-reader); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s, color 0.12s;
+  }
+  .btn--hub {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+  }
+  .btn--hub:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+  .btn--reader {
+    background: var(--stripe-reader);
+    color: #ffffff;
+    border-color: var(--stripe-reader);
+  }
+  .btn--reader:hover { filter: brightness(1.1); }
+
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Footer note ── */
+  .footer-note {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .footer-note a { color: var(--text-subtle); text-decoration: underline; text-underline-offset: 2px; }
+  .footer-note a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-icon" aria-hidden="true">🔄</div>
+    <div>
+      <div class="header-title">
+        Grav Helios Converters
+        <span class="badge">Beta</span>
+      </div>
+      <div class="header-sub">Open education and publishing content tools for the <a href="https://getgrav.org/premium/helios" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <p class="intro">
+    <strong>Your content. Your call.</strong> These converters migrate content from your LMS or Pressbooks site into portable open Markdown files for the Grav CMS — self-hosted, embeddable back into Canvas, Moodle, or almost any LMS via a URL parameter.
+  </p>
+
+  <!-- Cards -->
+  <div class="cards">
+
+    <!-- Course Hub Converter -->
+    <div class="card">
+      <div class="card-stripe card-stripe--hub"></div>
+      <div class="card-body">
+        <div class="card-header">
+          <div class="card-icon card-icon--hub" aria-hidden="true">🎓</div>
+          <div class="card-title-group">
+            <div class="card-title">
+              Common Cartridge Converter
+              <span class="card-badge card-badge--hub">Helios Course Hub</span>
+            </div>
+            <div class="card-subtitle">Canvas · Moodle · Brightspace · Blackboard → <a href="https://www.hibbittsdesign.org/Grav-Helios-Course-Hub-2a4bc7abbf574a61a65c891d226006c4">Grav Helios Course Hub</a></div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Convert a Common Cartridge (.imscc) export into a collection of pages for Grav Helios Course Hub — modules, learning objectives, embedded video, course image, license, and syllabus all carried across. LMS content varies widely, so treat the result as a first draft to review, not a finished course.
+        </p>
+        <div class="card-action">
+          <a href="https://common-cartridge-converter.hibbittsdesign.org/" class="btn btn--hub">
+            Open Cartridge Converter
+          </a>
+          <a href="https://demo.hibbittsdesign.org/grav-helios-course-hub-common-cartridge-it2dda/" class="example-link example-link--hub" target="_blank" rel="noopener noreferrer">
+            Example: Digital Animation course
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open Reader Converter -->
+    <div class="card">
+      <div class="card-stripe card-stripe--reader"></div>
+      <div class="card-body">
+        <div class="card-header">
+          <div class="card-icon card-icon--reader" aria-hidden="true">📖</div>
+          <div class="card-title-group">
+            <div class="card-title">
+              Pressbooks Converter
+              <span class="card-badge card-badge--reader">Helios Open Reader</span>
+            </div>
+            <div class="card-subtitle">Pressbooks XHTML export → <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1">Grav Helios Open Reader</a></div>
+          </div>
+        </div>
+        <p class="card-desc">
+          Convert a Pressbooks XHTML export into a collection of pages for Grav Helios Open Reader in minutes — sections, chapters, learning objectives, H5P activity links, cover image, license, and OER attribution all carried across automatically. A clean, open web reading experience — shareable, searchable, and yours to keep.
+        </p>
+        <div class="card-action">
+          <a href="https://pressbooks-converter.hibbittsdesign.org/" class="btn btn--reader">
+            Open Pressbooks Converter
+          </a>
+          <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" class="example-link example-link--reader" target="_blank" rel="noopener noreferrer">
+            Example: Principles of Social Psychology
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <p class="footer-note">
+    Built by Paul Hibbitts and Claude Code · Powered by <a href="https://getgrav.org">Grav CMS</a> and the <a href="https://getgrav.org/premium/helios">Grav Premium Helios theme</a> · Content converts to portable Markdown files with no database or platform dependency.
+  </p>
+
+</div>
+
+</body>
+</html>
