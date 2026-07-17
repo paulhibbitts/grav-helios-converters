@@ -20,13 +20,13 @@
     --badge-bg:       #d7f0ea;
     --badge-text:     #1f6b5a;
     --stripe-hub:     #2f8f7a;
-    --stripe-reader:  #3b5a75;
+    --stripe-reader:  #1e40af;
     --hub-badge-bg:   #d7f0ea;
     --hub-badge-text: #1f6b5a;
     --rdr-badge-bg:   #dde6ec;
     --rdr-badge-text: #2c4457;
     --icon-hub-bg:    #d7f0ea;
-    --icon-rdr-bg:    #dde6ec;
+    --icon-rdr-bg:    #cee9fb;
     --icon-header-bg: #ece9e5;
     --focus:          #2f8f7a;
     --radius:         12px;
@@ -45,13 +45,13 @@
       --badge-bg:       #163d33;
       --badge-text:     #6dd4bd;
       --stripe-hub:     #4fb89f;
-      --stripe-reader:  #4a6f8c;
+      --stripe-reader:  #1d4ed8;
       --hub-badge-bg:   #163d33;
       --hub-badge-text: #6dd4bd;
       --rdr-badge-bg:   #202f3d;
       --rdr-badge-text: #9fbad0;
       --icon-hub-bg:    #163d33;
-      --icon-rdr-bg:    #202f3d;
+      --icon-rdr-bg:    #142f49;
       --icon-header-bg: #2c2a27;
       --focus:          #4fb89f;
     }
@@ -69,13 +69,13 @@
     --badge-bg:       #d7f0ea;
     --badge-text:     #1f6b5a;
     --stripe-hub:     #2f8f7a;
-    --stripe-reader:  #3b5a75;
+    --stripe-reader:  #1e40af;
     --hub-badge-bg:   #d7f0ea;
     --hub-badge-text: #1f6b5a;
     --rdr-badge-bg:   #dde6ec;
     --rdr-badge-text: #2c4457;
     --icon-hub-bg:    #d7f0ea;
-    --icon-rdr-bg:    #dde6ec;
+    --icon-rdr-bg:    #cee9fb;
     --icon-header-bg: #ece9e5;
     --focus:          #2f8f7a;
   }
@@ -92,13 +92,13 @@
     --badge-bg:       #163d33;
     --badge-text:     #6dd4bd;
     --stripe-hub:     #4fb89f;
-    --stripe-reader:  #4a6f8c;
+    --stripe-reader:  #1d4ed8;
     --hub-badge-bg:   #163d33;
     --hub-badge-text: #6dd4bd;
     --rdr-badge-bg:   #202f3d;
     --rdr-badge-text: #9fbad0;
     --icon-hub-bg:    #163d33;
-    --icon-rdr-bg:    #202f3d;
+    --icon-rdr-bg:    #142f49;
     --icon-header-bg: #2c2a27;
     --focus:          #4fb89f;
   }
@@ -114,7 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5rem 1rem 3rem;
+    padding: 2rem 1rem 3rem;
     line-height: 1.5;
   }
 
@@ -124,24 +124,35 @@
   .header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid #c3c9d6;
   }
+  @media (prefers-color-scheme: dark) {
+    .header { border-bottom-color: #454956; }
+  }
+  :root[data-theme="dark"] .header { border-bottom-color: #454956; }
   .header-icon {
-    width: 2.25rem;
-    height: 2.25rem;
-    background: var(--icon-header-bg);
-    border-radius: 8px;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: #dadfe8;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
   }
+  @media (prefers-color-scheme: dark) {
+    .header-icon { background: #363943; }
+  }
+  :root[data-theme="dark"] .header-icon { background: #363943; }
   .header-title {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     line-height: 1.3;
+    letter-spacing: -0.01em;
   }
   .badge {
     display: inline-block;
@@ -265,7 +276,11 @@
     text-underline-offset: 2px;
   }
   .example-link--hub    { color: var(--accent); }
-  .example-link--reader { color: var(--stripe-reader); }
+  .example-link--reader { color: #1e40af; }
+  @media (prefers-color-scheme: dark) {
+    .example-link--reader { color: #60a5fa; }
+  }
+  :root[data-theme="dark"] .example-link--reader { color: #60a5fa; }
   .btn {
     display: inline-flex;
     align-items: center;
@@ -287,11 +302,15 @@
   .btn--hub:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
   .btn--reader {
-    background: var(--stripe-reader);
+    background: #1e40af;
     color: #ffffff;
-    border-color: var(--stripe-reader);
+    border-color: #1e40af;
   }
   .btn--reader:hover { filter: brightness(1.1); }
+  @media (prefers-color-scheme: dark) {
+    .btn--reader { background: #1d4ed8; border-color: #1d4ed8; }
+  }
+  :root[data-theme="dark"] .btn--reader { background: #1d4ed8; border-color: #1d4ed8; }
 
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 
@@ -324,7 +343,7 @@
         Grav Helios Converters
         <span class="badge">Beta</span>
       </h1>
-      <div class="header-sub">Course and reading sites for open education and publishing, made possible by the <a href="https://getgrav.org/premium/helios" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
+      <div class="header-sub">Course and reading sites for open education and publishing built with the open-source <a href="https://getgrav.org" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav CMS</a>, and made possible by the <a href="https://getgrav.org/premium/helios" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
     </div>
   </header>
 
@@ -332,7 +351,7 @@
 
   <!-- Intro -->
   <p class="intro">
-    <strong>Your content. Your call.</strong> These converters turn your LMS course content or Pressbooks book content into a modern, web-first presentation with the Grav CMS: portable Markdown files, no database, self-hosted, and embeddable back into Canvas, Moodle, or almost any LMS via a URL parameter.
+    <strong>Your content. Your call.</strong> These converters turn your LMS course content or Pressbooks book content into a modern, web-first presentation with the open-source Grav CMS: portable Markdown files, no database, self-hosted, and embeddable back into Canvas, Moodle, or almost any LMS via a URL parameter.
   </p>
 
   <!-- Cards -->
