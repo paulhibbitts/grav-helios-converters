@@ -14,6 +14,9 @@
 <meta name="twitter:description" content="Convert Common Cartridge LMS exports (Canvas, Moodle, Brightspace, Blackboard) and Pressbooks books into portable Markdown files for Grav Helios Course Hub and Open Reader, built on the open-source Grav CMS.">
 <title>Grav Helios Converters – Convert LMS and Pressbooks Content to Open Markdown</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><style>path{stroke:%232c2a27}@media (prefers-color-scheme:dark){path{stroke:%23e8e6e3}}</style><path d='M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4'/><path d='M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ── Tokens ── */
   :root {
@@ -116,32 +119,43 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem 3rem;
     line-height: 1.5;
   }
 
-  .page { width: 100%; max-width: 600px; }
+  .page { width: 100%; max-width: 600px; padding: 1.75rem 1rem 3rem; }
 
-  /* ── Header ── */
+  /* ── Site header (sticky, holds the full page heading) ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: rgba(246, 245, 243, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 2px solid #c3c9d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    .site-header { background: rgba(26, 25, 23, 0.75); border-bottom-color: #454956; }
+  }
+  :root[data-theme="dark"] .site-header { background: rgba(26, 25, 23, 0.75); border-bottom-color: #454956; }
+  .site-header-inner { width: 100%; max-width: 600px; padding: 0 1rem; }
+
   .header {
     display: flex;
     align-items: center;
     gap: 0.875rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 2px solid #c3c9d6;
+    padding: 1.1rem 0;
   }
-  @media (prefers-color-scheme: dark) {
-    .header { border-bottom-color: #454956; }
-  }
-  :root[data-theme="dark"] .header { border-bottom-color: #454956; }
   .header-icon {
     width: 2.75rem;
     height: 2.75rem;
@@ -150,18 +164,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    color: var(--text-subtle);
     flex-shrink: 0;
   }
+  .header-icon svg { width: 22px; height: 22px; }
   @media (prefers-color-scheme: dark) {
     .header-icon { background: #363943; }
   }
   :root[data-theme="dark"] .header-icon { background: #363943; }
   .header-title {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
   }
   .badge {
     display: inline-block;
@@ -229,11 +244,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
     flex-shrink: 0;
   }
-  .card-icon--hub    { background: var(--icon-hub-bg); }
-  .card-icon--reader { background: var(--icon-rdr-bg); }
+  .card-icon svg { width: 17px; height: 17px; }
+  .card-icon--hub    { background: var(--icon-hub-bg); color: var(--hub-badge-text); }
+  .card-icon--reader { background: var(--icon-rdr-bg); color: var(--rdr-badge-text); }
 
   .card-title-group { flex: 1; }
   .card-title {
@@ -343,19 +358,22 @@
 </head>
 <body>
 
-<div class="page">
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header-icon" aria-hidden="true">🔄</div>
-    <div>
-      <h1 class="header-title">
-        Grav Helios Converters
-        <span class="badge">Beta</span>
-      </h1>
-      <div class="header-sub">Open education and publishing tools for the <a href="https://getgrav.org/premium/helios" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header">
+      <div class="header-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg></div>
+      <div>
+        <h1 class="header-title">
+          Grav Helios Converters
+          <span class="badge">Beta</span>
+        </h1>
+        <div class="header-sub">Open education and publishing tools for the <a href="https://getgrav.org/premium/helios" style="color:var(--text-subtle);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
+      </div>
     </div>
-  </header>
+  </div>
+</header>
+
+<div class="page">
 
   <main>
 
@@ -380,7 +398,7 @@
       <div class="card-stripe card-stripe--hub"></div>
       <div class="card-body">
         <div class="card-header">
-          <div class="card-icon card-icon--hub" aria-hidden="true">🎓</div>
+          <div class="card-icon card-icon--hub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <div class="card-title-group">
             <h2 class="card-title">
               Common Cartridge Converter
@@ -394,7 +412,7 @@
         </p>
         <div class="card-action">
           <a href="https://common-cartridge-converter.hibbittsdesign.org/" class="btn btn--hub">
-            Open Cartridge Converter
+            Open Common Cartridge Converter
           </a>
           <a href="https://demo.hibbittsdesign.org/grav-helios-course-hub-common-cartridge-it2dda/" class="example-link example-link--hub" target="_blank" rel="noopener noreferrer">
             Example: Digital Animation course
@@ -409,7 +427,7 @@
       <div class="card-stripe card-stripe--reader"></div>
       <div class="card-body">
         <div class="card-header">
-          <div class="card-icon card-icon--reader" aria-hidden="true">📖</div>
+          <div class="card-icon card-icon--reader" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2-1 5-1 8 0v13c-3-1-6-1-8 0z"/><path d="M20 5.5c-2-1-5-1-8 0v13c3-1 6-1 8 0z"/></svg></div>
           <div class="card-title-group">
             <h2 class="card-title">
               Pressbooks Converter
@@ -447,7 +465,8 @@
   <footer>
   <p class="footer-note">
     Built by Paul Hibbitts and Claude Code.<br>
-    Grav Skeleton Package repos: <a href="https://github.com/hibbitts-design/grav-skeleton-helios-course-hub">Helios Course Hub</a> · <a href="https://github.com/hibbitts-design/grav-skeleton-helios-open-reader">Helios Open Reader</a>
+    Grav Skeleton Package repos: <a href="https://github.com/hibbitts-design/grav-skeleton-helios-course-hub">Helios Course Hub</a> · <a href="https://github.com/hibbitts-design/grav-skeleton-helios-open-reader">Helios Open Reader</a><br>
+    Converter repos: <a href="https://github.com/paulhibbitts/common-cartridge-converter">Common Cartridge Converter</a> · <a href="https://github.com/paulhibbitts/pressbooks-converter">Pressbooks Converter</a> · <a href="https://github.com/paulhibbitts/grav-helios-converters">This page</a>
   </p>
   </footer>
 
