@@ -213,6 +213,39 @@
   .intro a { color: var(--text-subtle); text-decoration: underline; text-underline-offset: 2px; }
   .intro a:hover { color: var(--text); }
 
+  /* ── Feature callout ── */
+  .feature-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    margin-bottom: 1.75rem;
+    max-width: 43rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .feature-callout-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 99px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .feature-callout-text {
+    font-size: 0.9375rem;
+    color: var(--text-subtle);
+    line-height: 1.6;
+  }
+  .feature-callout-text strong { color: var(--text); }
+
   /* ── Cards ── */
   .cards { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.75rem; max-width: 43rem; margin-left: auto; margin-right: auto; }
 
@@ -391,12 +424,20 @@
     <strong>Your content. Your call.</strong> The Grav Helios <a href="https://www.hibbittsdesign.org/Grav-Helios-Course-Hub-2a4bc7abbf574a61a65c891d226006c4">Course Hub</a> and <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1">Open Reader</a> give your course or open content a modern, clean home, designed to be an enjoyable experience for the students or readers who'll use it. Built with <a href="https://getgrav.org/">Grav CMS</a> for educators and open publishers, they're ready-to-run skeleton packages that you keep and control.
   </p>
   <p class="intro">
-    These converters turn your LMS course content or Pressbooks book content into a website using the open-source Grav CMS: future-friendly Markdown files, no database, self-hosted, and each page individually embeddable back into Canvas, Moodle, or almost any LMS via a URL parameter. That same open format also makes it easy for open publishers and OER-minded educators to keep their content publicly accessible and ready for others to reuse. Prefer output with no Helios dependency at all? Both converters offer a <strong>Standard Markdown</strong> option that also works on other Markdown-based platforms.
+    These converters turn your LMS course content or Pressbooks book content into a website using the open-source Grav CMS: future-friendly Markdown files, no database, self-hosted, and each page individually embeddable back into Canvas, Moodle, or almost any LMS via a URL parameter. That same open format also makes it easy for open publishers and OER-minded educators to keep their content publicly accessible and ready for others to reuse.
   </p>
+
+  <!-- Standard Markdown feature callout -->
+  <div class="feature-callout">
+    <span class="feature-callout-badge">NEW</span>
+    <div class="feature-callout-text">
+      <strong>Standard Markdown</strong> — both converters now offer an option to skip Helios-specific shortcodes entirely, producing plain Markdown that also works on other Markdown-based platforms, not just Grav Helios Course Hub or Open Reader. Look for the toggle in each converter's settings.
+    </div>
+  </div>
 
   <!-- Prerequisite note -->
   <p class="intro">
-    <strong>New to Grav Helios?</strong> The default, Helios-flavored output requires an existing <a href="https://www.hibbittsdesign.org/Grav-Helios-Course-Hub-2a4bc7abbf574a61a65c891d226006c4">Grav Helios Course Hub</a> or <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1">Grav Helios Open Reader</a> installation to use the converted files – both already include demo content, so you'll see a working example right away. (The Standard Markdown option above needs no Grav installation at all.) Or convert your own content now and preview the Markdown output first, no installation needed.
+    <strong>Don't have a Grav Helios site yet?</strong> The default, Helios-flavored output requires an existing <a href="https://www.hibbittsdesign.org/Grav-Helios-Course-Hub-2a4bc7abbf574a61a65c891d226006c4">Grav Helios Course Hub</a> or <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1">Grav Helios Open Reader</a> installation to use the converted files – both already include demo content, so you'll see a working example right away. (The Standard Markdown option above needs no Grav installation at all.) Or convert your own content now and preview the Markdown output first, no installation needed.
   </p>
 
   <!-- Cards -->
