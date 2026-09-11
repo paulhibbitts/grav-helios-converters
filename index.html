@@ -158,7 +158,7 @@
 
   /* "HibbittsDesign.org" wordmark — the exact hub brand mark (icon, font,
      size, weight), so this reads as the same header the visitor just left. */
-  .header-brand-row { max-width: 41.6rem; margin: 0 auto; padding-top: 22px; }
+  .header-brand-row { display: flex; max-width: 41.6rem; margin: 0 auto; padding-top: 22px; }
   .header-brand {
     display: inline-flex;
     align-items: center;
@@ -236,7 +236,7 @@
     margin-right: auto;
   }
   .intro strong { color: var(--text-subtle); }
-  .intro a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+  .intro a { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
   .intro a:hover { color: var(--text); }
 
   /* ── Feature callout ── */
@@ -339,7 +339,7 @@
     color: var(--text-muted);
     margin-top: 0.1rem;
   }
-  .card-subtitle a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+  .card-subtitle a { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
   .card-subtitle a:hover { color: var(--text); }
 
   .card-desc {
@@ -416,7 +416,7 @@
     max-width: 38rem;
     margin: 0 auto;
   }
-  .footer-note a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+  .footer-note a { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
   .footer-note a:hover { color: var(--text); }
 </style>
 </head>
@@ -434,7 +434,7 @@
           Grav Helios Converters
           <span class="badge">Beta</span>
         </h1>
-        <div class="header-sub">Open education and publishing tools for the <a href="https://getgrav.org/premium/helios" style="color:var(--link);text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
+        <div class="header-sub">Open education and publishing tools for the <a href="https://getgrav.org/premium/helios" style="color:var(--link);font-weight:600;text-decoration:underline;text-underline-offset:2px;">Grav Premium Helios Theme</a></div>
       </div>
     </div>
   </div>
