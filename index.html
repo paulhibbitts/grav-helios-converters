@@ -156,17 +156,21 @@
   :root[data-theme="dark"] .site-header { background: rgba(23, 24, 26, 0.8); border-bottom-color: var(--border); }
   .site-header-inner { width: 100%; max-width: 896px; padding: 0 1rem; }
 
-  /* "HibbittsDesign.org" wordmark — links back to the hub, echoing its header.
-     Brand-neutral (mono, muted) on every page in the family. */
-  .header-brand-row { max-width: 41.6rem; margin: 0 auto; padding-top: 1rem; }
+  /* "HibbittsDesign.org" wordmark — the exact hub brand mark (icon, font,
+     size, weight), so this reads as the same header the visitor just left. */
+  .header-brand-row { max-width: 41.6rem; margin: 0 auto; padding-top: 22px; }
   .header-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
     font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: var(--text-subtle);
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text);
     text-decoration: none;
   }
+  .header-brand img { height: 22px; width: auto; display: block; }
   .header-brand:hover { color: var(--link); }
 
   .header {
@@ -421,7 +425,7 @@
 <header class="site-header">
   <div class="site-header-inner">
     <div class="header-brand-row">
-      <a class="header-brand" href="https://hibbittsdesign.org/">HibbittsDesign.org</a>
+      <a class="header-brand" href="https://hibbittsdesign.org/"><img src="assets/hd-logo.png" width="83" height="178" alt=""><span>HibbittsDesign<wbr>.org</span></a>
     </div>
     <div class="header">
       <div class="header-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg></div>
