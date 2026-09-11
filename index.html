@@ -14,10 +14,11 @@
 <meta name="twitter:description" content="Convert Common Cartridge LMS exports (Canvas, Moodle, Brightspace, Blackboard) and Pressbooks books to Markdown files for Grav Helios Course Hub and Open Reader — or standard, portable Markdown for any platform.">
 <title>Grav Helios Converters – Convert LMS and Pressbooks Content to Open Markdown</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><style>path{stroke:%232c2a27}@media (prefers-color-scheme:dark){path{stroke:%23e8e6e3}}</style><path d='M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4'/><path d='M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4'/></svg>">
+<link rel="stylesheet" href="assets/shared.css">
 <style>
-  /* Self-hosted, matching hibbittsdesign.org (assets/fonts/) — no external font dependency. */
-  @font-face{font-family:"Public Sans";src:url("assets/fonts/PublicSans-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
-  @font-face{font-family:"JetBrains Mono";src:url("assets/fonts/JetBrainsMono-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
+  /* Fonts come from shared.css. --link/--focus stay defined locally
+     (below) rather than aliased, since this page also supports a manual
+     [data-theme] override that shared.css doesn't know about. */
 
   /* ── Tokens — re-skinned to sit alongside hibbittsdesign.org: warm paper/ink
         neutrals and the site's Grav Helios-family purple as the single accent. ── */
@@ -45,6 +46,7 @@
     --link:           #3d6f9e;
     --focus:          #3d6f9e;
     --radius:         16px;
+    --ink: var(--text); /* alias for shared.css's .wordmark, which reads --ink */
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -156,22 +158,9 @@
   :root[data-theme="dark"] .site-header { background: rgba(23, 24, 26, 0.8); border-bottom-color: var(--border); }
   .site-header-inner { width: 100%; max-width: 896px; padding: 0 1rem; }
 
-  /* "HibbittsDesign.org" wordmark — the exact hub brand mark (icon, font,
-     size, weight), so this reads as the same header the visitor just left. */
+  /* "HibbittsDesign.org" wordmark uses shared.css's .wordmark component
+     (--ink is aliased to --text up in the :root token block above). */
   .header-brand-row { display: flex; max-width: 41.6rem; margin: 0 auto; padding-top: 22px; }
-  .header-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 16.5px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .header-brand img { height: 22px; width: auto; display: block; }
-  .header-brand:hover { color: var(--link); }
 
   .header {
     display: flex;
@@ -425,7 +414,7 @@
 <header class="site-header">
   <div class="site-header-inner">
     <div class="header-brand-row">
-      <a class="header-brand" href="https://hibbittsdesign.org/"><img src="assets/hd-logo.png" width="83" height="178" alt=""><span>HibbittsDesign<wbr>.org</span></a>
+      <a class="wordmark" href="https://hibbittsdesign.org/"><img src="assets/hd-logo.png" width="83" height="178" alt=""><span>HibbittsDesign<wbr>.org</span></a>
     </div>
     <div class="header">
       <div class="header-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg></div>
