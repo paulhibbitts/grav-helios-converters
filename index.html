@@ -387,6 +387,14 @@
      the family purple is reserved for buttons, stripes, badges and icons. */
   .example-link--hub,
   .example-link--reader { color: var(--link); }
+  /* Two example links stack as one group beside the button,
+     so they wrap below it together instead of one at a time. */
+  .example-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* each link only as wide as its text */
+    gap: 0.375rem;
+  }
   .btn {
     display: inline-flex;
     align-items: center;
@@ -536,10 +544,16 @@
           <a href="https://pressbooks-converter.hibbittsdesign.org/" class="btn btn--reader">
             Open Pressbooks Converter
           </a>
-          <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" class="example-link example-link--reader" target="_blank" rel="noopener noreferrer">
-            Example: Principles of Social Psychology
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+          <div class="example-links">
+            <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" class="example-link example-link--reader" target="_blank" rel="noopener noreferrer">
+              Example: Principles of Social Psychology (Open Reader)
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://demo.hibbittsdesign.org/grav-open-publishing-quark2-udl/" class="example-link example-link--reader" target="_blank" rel="noopener noreferrer">
+              Example: UDL for IDEA (Open Publishing)
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
