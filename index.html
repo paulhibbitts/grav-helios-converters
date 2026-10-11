@@ -387,9 +387,10 @@
      the family purple is reserved for buttons, stripes, badges and icons. */
   .example-link--hub,
   .example-link--reader { color: var(--link); }
-  /* Two example links stack as one group beside the button,
-     so they wrap below it together instead of one at a time. */
+  /* Two example links stack as one group on their own row below the button,
+     so both cards look the same whatever the length of their labels. */
   .example-links {
+    flex-basis: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* each link only as wide as its text */
